@@ -1,0 +1,20 @@
+name: ra-ipv6-routing
+
+topology:
+  nodes:
+    h1:
+      kind: linux
+      image: alpine:latest
+
+    # Swapped in for frr to have L3 routing
+    r1:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+
+    h2:
+      kind: linux
+      image: alpine:latest
+
+  links:
+    - endpoints: ["h1:eth1", "r1:eth1"]
+    - endpoints: ["h2:eth1", "r1:eth2"]
