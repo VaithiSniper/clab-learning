@@ -1,0 +1,37 @@
+{
+  "freeTextAnnotations": [],
+  "freeShapeAnnotations": [],
+  "trafficRateAnnotations": [],
+  "groupStyleAnnotations": [],
+  "networkNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "h1",
+      "position": {
+        "x": 300,
+        "y": 360
+      },
+      "icon": "server"
+    },
+    {
+      "id": "sw1",
+      "position": {
+        "x": 460,
+        "y": 340
+      },
+      "icon": "switch"
+    },
+    {
+      "id": "h2",
+      "position": {
+        "x": 600,
+        "y": 360
+      },
+      "icon": "server",
+      "iconCornerRadius": 0
+    }
+  ],
+  "edgeAnnotations": [],
+  "aliasEndpointAnnotations": [],
+  "viewerSettings": {}
+}
