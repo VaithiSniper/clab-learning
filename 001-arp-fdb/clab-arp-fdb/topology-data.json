@@ -1,0 +1,148 @@
+{
+  "name": "arp-fdb",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-5159eec7bfa5",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINezJihpYupK4gonbBckKMOBFKp9BOVEjUml2/SrdLXU","ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDG7EnAdPFjlkuqCYV770VefAlBVtI06Ws12wn1tBX3mXaAzNFHQNzdQJzOpLnHsLC/3cfWe0EXig69pDn+uvRwoSdzlmKb05lbv6UyMF/QwcADfvR0ArfOG7RJF+KsWsl6X2syuOmVPOjAzcPfZgW9sTcT2tPSe8p6LUzCbXCYMoJ0kiPsA3EMvcV5QDz6vjFt4OfF35N/rRgAmSoCcOo0REpdI02QThdEu7YgWDayfMLDMXTFIzH/odS1YiYVx5Ze2FEKr4tvUwLzR620NdUn/eqAgBIeF+lM6I7yOf6bj+Drd74P5HSEs1NPD5X6DeoXpSKPKX+UaPDkV4Fszz29g+IR+XP0GfAh4zRz/S+d3obUJnVbpyS84PlnyAY8L+TqIfBk73IZipl5b0/ceBZpS5gvGiLkRqCobpWDD58+Sl3kIR9A4398mPhMIsGBwy3Xz74LsmP1iTTnRkTOvb85GaycG62LkBn1dv8SC9vdCWP8pm0zW612xx3GobwbfwM="],
+  "nodes": {
+    "h1": {
+      "index": "0",
+      "shortname": "h1",
+      "longname": "clab-arp-fdb-h1",
+      "fqdn": "h1.arp-fdb.io",
+      "group": "",
+      "labdir": "/home/vaithee/clab-topologies/001-arp-fdb/clab-arp-fdb/h1",
+      "kind": "linux",
+      "image": "alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-5159eec7bfa5",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vaithee/clab-topologies/001-arp-fdb/clab-arp-fdb/h1",
+        "clab-node-longname": "clab-arp-fdb-h1",
+        "clab-node-name": "h1",
+        "clab-node-type": "",
+        "clab-owner": "vaithee",
+        "clab-topo-file": "/home/vaithee/clab-topologies/001-arp-fdb/clab.yaml",
+        "containerlab": "arp-fdb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "h2": {
+      "index": "1",
+      "shortname": "h2",
+      "longname": "clab-arp-fdb-h2",
+      "fqdn": "h2.arp-fdb.io",
+      "group": "",
+      "labdir": "/home/vaithee/clab-topologies/001-arp-fdb/clab-arp-fdb/h2",
+      "kind": "linux",
+      "image": "alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-5159eec7bfa5",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vaithee/clab-topologies/001-arp-fdb/clab-arp-fdb/h2",
+        "clab-node-longname": "clab-arp-fdb-h2",
+        "clab-node-name": "h2",
+        "clab-node-type": "",
+        "clab-owner": "vaithee",
+        "clab-topo-file": "/home/vaithee/clab-topologies/001-arp-fdb/clab.yaml",
+        "containerlab": "arp-fdb"
+      },
+      "port-bindings": [
+      ]
+    },
+    "sw1": {
+      "index": "2",
+      "shortname": "sw1",
+      "longname": "clab-arp-fdb-sw1",
+      "fqdn": "sw1.arp-fdb.io",
+      "group": "",
+      "labdir": "/home/vaithee/clab-topologies/001-arp-fdb/clab-arp-fdb/sw1",
+      "kind": "linux",
+      "image": "alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-5159eec7bfa5",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vaithee/clab-topologies/001-arp-fdb/clab-arp-fdb/sw1",
+        "clab-node-longname": "clab-arp-fdb-sw1",
+        "clab-node-name": "sw1",
+        "clab-node-type": "",
+        "clab-owner": "vaithee",
+        "clab-topo-file": "/home/vaithee/clab-topologies/001-arp-fdb/clab.yaml",
+        "containerlab": "arp-fdb"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "h1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:ea:89:27",
+          "peer": "z"
+        },
+        "z": {
+          "node": "sw1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:ca:f7:f1",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "sw1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:e8:56:de",
+          "peer": "z"
+        },
+        "z": {
+          "node": "h2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:bb:e4:22",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}
