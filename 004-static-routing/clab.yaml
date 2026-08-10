@@ -1,0 +1,44 @@
+name: static-routing
+
+topology:
+  nodes:
+    r1:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - r1-frr.conf:/etc/frr/frr.conf
+      exec:
+        - sysctl -w net.ipv6.conf.all.forwarding=1
+        - sysctl -w net.ipv6.conf.eth1.forwarding=1
+        - sysctl -w net.ipv6.conf.rtr.forwarding=1
+
+    r2:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - r2-frr.conf:/etc/frr/frr.conf
+      exec:
+        - sysctl -w net.ipv6.conf.all.forwarding=1
+        - sysctl -w net.ipv6.conf.eth1.forwarding=1
+        - sysctl -w net.ipv6.conf.rtr.forwarding=1
+
+    h1:
+      kind: linux
+      image: alpine:latest
+      exec:
+        - apk add iproute2 tcpdump
+        - ip -6 addr add 2001:db8:1::2/64 dev eth1
+        - ip -6 route add 2001:db8:2::/64 via 2001:db8:1::1 dev eth1
+
+    h2:
+      kind: linux
+      image: alpine:latest
+      exec:
+        - apk add iproute2 tcpdump
+        - ip -6 addr add 2001:db8:2::2/64 dev eth1
+        - ip -6 route add 2001:db8:1::/64 via 2001:db8:2::1 dev eth1
+
+  links:
+    - endpoints: ["h1:eth1", "r1:eth1"]
+    - endpoints: ["r1:rtr", "r2:rtr"]
+    - endpoints: ["r2:eth1", "h2:eth1"]
