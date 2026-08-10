@@ -6,7 +6,7 @@
       "prefix": "clab",
       "mgmt": {
         "network": "clab",
-        "bridge": "br-0cb2aa399e45",
+        "bridge": "br-508041bce74b",
         "ipv4-subnet": "172.20.20.0/24",
         "ipv4-gw": "172.20.20.1",
         "ipv6-subnet": "3fff:172:20:20::/64",
@@ -28,13 +28,13 @@
       "image": "alpine:latest",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-address": "172.20.20.2",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-0cb2aa399e45",
+        "clab-mgmt-net-bridge": "br-508041bce74b",
         "clab-node-group": "",
         "clab-node-kind": "linux",
         "clab-node-lab-dir": "/home/vaithee/clab-topologies/003-ra-ipv6-routing/clab-ra-ipv6-routing/h1",
@@ -59,13 +59,13 @@
       "image": "alpine:latest",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-address": "172.20.20.4",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-0cb2aa399e45",
+        "clab-mgmt-net-bridge": "br-508041bce74b",
         "clab-node-group": "",
         "clab-node-kind": "linux",
         "clab-node-lab-dir": "/home/vaithee/clab-topologies/003-ra-ipv6-routing/clab-ra-ipv6-routing/h2",
@@ -90,13 +90,13 @@
       "image": "quay.io/frrouting/frr:10.7.0",
       "mgmt-net": "",
       "mgmt-intf": "",
-      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-address": "172.20.20.3",
       "mgmt-ipv4-prefix-length": 24,
-      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
       "mgmt-ipv6-prefix-length": 64,
       "mac-address": "",
       "labels": {
-        "clab-mgmt-net-bridge": "br-0cb2aa399e45",
+        "clab-mgmt-net-bridge": "br-508041bce74b",
         "clab-node-group": "",
         "clab-node-kind": "linux",
         "clab-node-lab-dir": "/home/vaithee/clab-topologies/003-ra-ipv6-routing/clab-ra-ipv6-routing/r1",
@@ -117,13 +117,13 @@
         "a": {
           "node": "h1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:56:25:dd",
+          "mac": "aa:c1:ab:a7:c7:36",
           "peer": "z"
         },
         "z": {
           "node": "r1",
           "interface": "eth1",
-          "mac": "aa:c1:ab:00:9a:8b",
+          "mac": "aa:c1:ab:ea:c8:c8",
           "peer": "a"
         }
       }
@@ -131,15 +131,15 @@
     {
       "endpoints": {
         "a": {
-          "node": "h2",
-          "interface": "eth1",
-          "mac": "aa:c1:ab:28:6c:41",
+          "node": "r1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:01:fd:8e",
           "peer": "z"
         },
         "z": {
-          "node": "r1",
-          "interface": "eth2",
-          "mac": "aa:c1:ab:6c:fb:d4",
+          "node": "h2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:f3:ea:54",
           "peer": "a"
         }
       }

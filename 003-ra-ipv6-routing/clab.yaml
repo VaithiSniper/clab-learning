@@ -2,19 +2,34 @@ name: ra-ipv6-routing
 
 topology:
   nodes:
-    h1:
-      kind: linux
-      image: alpine:latest
-
-    # Swapped in for frr to have L3 routing
     r1:
       kind: linux
       image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - frr.conf:/etc/frr/frr.conf
+      exec:
+        - sysctl -w net.ipv6.conf.all.forwarding=1
+        - sysctl -w net.ipv6.conf.eth1.forwarding=1
+        - sysctl -w net.ipv6.conf.eth2.forwarding=1
+
+    h1:
+      kind: linux
+      image: alpine:latest
+      exec:
+        - apk add tcpdump iproute2
+        # Let the RA/SLAAC lab own the IPv6 data-plane routing.
+        # Bump router router-preference to high to mandate using this default route.
+        - sysctl -w net.ipv6.conf.eth1.accept_ra=1
 
     h2:
       kind: linux
       image: alpine:latest
+      exec:
+        - apk add tcpdump iproute2
+        # Let the RA/SLAAC lab own the IPv6 data-plane routing.
+        # Bump router router-preference to high to mandate using this default route.
+        - sysctl -w net.ipv6.conf.eth1.accept_ra=1
 
   links:
     - endpoints: ["h1:eth1", "r1:eth1"]
-    - endpoints: ["h2:eth1", "r1:eth2"]
+    - endpoints: ["r1:eth2", "h2:eth1"]

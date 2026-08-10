@@ -8,8 +8,8 @@ all:
     linux:
       hosts:
         clab-ra-ipv6-routing-h1:
-          ansible_host: 172.20.20.4
-        clab-ra-ipv6-routing-h2:
-          ansible_host: 172.20.20.3
-        clab-ra-ipv6-routing-r1:
           ansible_host: 172.20.20.2
+        clab-ra-ipv6-routing-h2:
+          ansible_host: 172.20.20.4
+        clab-ra-ipv6-routing-r1:
+          ansible_host: 172.20.20.3
