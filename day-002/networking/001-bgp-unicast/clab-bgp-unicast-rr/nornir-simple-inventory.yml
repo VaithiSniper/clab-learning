@@ -1,0 +1,26 @@
+---
+ce1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.5
+ce2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.6
+pe1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.4
+pe2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.3
+rr1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.2

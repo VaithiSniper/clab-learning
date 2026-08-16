@@ -1,0 +1,242 @@
+{
+  "name": "bgp-unicast-rr",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-ee303ecfddb2",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINezJihpYupK4gonbBckKMOBFKp9BOVEjUml2/SrdLXU","ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDG7EnAdPFjlkuqCYV770VefAlBVtI06Ws12wn1tBX3mXaAzNFHQNzdQJzOpLnHsLC/3cfWe0EXig69pDn+uvRwoSdzlmKb05lbv6UyMF/QwcADfvR0ArfOG7RJF+KsWsl6X2syuOmVPOjAzcPfZgW9sTcT2tPSe8p6LUzCbXCYMoJ0kiPsA3EMvcV5QDz6vjFt4OfF35N/rRgAmSoCcOo0REpdI02QThdEu7YgWDayfMLDMXTFIzH/odS1YiYVx5Ze2FEKr4tvUwLzR620NdUn/eqAgBIeF+lM6I7yOf6bj+Drd74P5HSEs1NPD5X6DeoXpSKPKX+UaPDkV4Fszz29g+IR+XP0GfAh4zRz/S+d3obUJnVbpyS84PlnyAY8L+TqIfBk73IZipl5b0/ceBZpS5gvGiLkRqCobpWDD58+Sl3kIR9A4398mPhMIsGBwy3Xz74LsmP1iTTnRkTOvb85GaycG62LkBn1dv8SC9vdCWP8pm0zW612xx3GobwbfwM="],
+  "nodes": {
+    "ce1": {
+      "index": "0",
+      "shortname": "ce1",
+      "longname": "clab-bgp-unicast-rr-ce1",
+      "fqdn": "ce1.bgp-unicast-rr.io",
+      "group": "",
+      "labdir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/ce1",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.7.0",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.5",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::5",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-ee303ecfddb2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/ce1",
+        "clab-node-longname": "clab-bgp-unicast-rr-ce1",
+        "clab-node-name": "ce1",
+        "clab-node-type": "",
+        "clab-owner": "vaithee",
+        "clab-topo-file": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab.yaml",
+        "containerlab": "bgp-unicast-rr"
+      },
+      "port-bindings": [
+      ]
+    },
+    "ce2": {
+      "index": "1",
+      "shortname": "ce2",
+      "longname": "clab-bgp-unicast-rr-ce2",
+      "fqdn": "ce2.bgp-unicast-rr.io",
+      "group": "",
+      "labdir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/ce2",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.7.0",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.6",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::6",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-ee303ecfddb2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/ce2",
+        "clab-node-longname": "clab-bgp-unicast-rr-ce2",
+        "clab-node-name": "ce2",
+        "clab-node-type": "",
+        "clab-owner": "vaithee",
+        "clab-topo-file": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab.yaml",
+        "containerlab": "bgp-unicast-rr"
+      },
+      "port-bindings": [
+      ]
+    },
+    "pe1": {
+      "index": "2",
+      "shortname": "pe1",
+      "longname": "clab-bgp-unicast-rr-pe1",
+      "fqdn": "pe1.bgp-unicast-rr.io",
+      "group": "",
+      "labdir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/pe1",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.7.0",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-ee303ecfddb2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/pe1",
+        "clab-node-longname": "clab-bgp-unicast-rr-pe1",
+        "clab-node-name": "pe1",
+        "clab-node-type": "",
+        "clab-owner": "vaithee",
+        "clab-topo-file": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab.yaml",
+        "containerlab": "bgp-unicast-rr"
+      },
+      "port-bindings": [
+      ]
+    },
+    "pe2": {
+      "index": "3",
+      "shortname": "pe2",
+      "longname": "clab-bgp-unicast-rr-pe2",
+      "fqdn": "pe2.bgp-unicast-rr.io",
+      "group": "",
+      "labdir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/pe2",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.7.0",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-ee303ecfddb2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/pe2",
+        "clab-node-longname": "clab-bgp-unicast-rr-pe2",
+        "clab-node-name": "pe2",
+        "clab-node-type": "",
+        "clab-owner": "vaithee",
+        "clab-topo-file": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab.yaml",
+        "containerlab": "bgp-unicast-rr"
+      },
+      "port-bindings": [
+      ]
+    },
+    "rr1": {
+      "index": "4",
+      "shortname": "rr1",
+      "longname": "clab-bgp-unicast-rr-rr1",
+      "fqdn": "rr1.bgp-unicast-rr.io",
+      "group": "",
+      "labdir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/rr1",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.7.0",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-ee303ecfddb2",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab-bgp-unicast-rr/rr1",
+        "clab-node-longname": "clab-bgp-unicast-rr-rr1",
+        "clab-node-name": "rr1",
+        "clab-node-type": "",
+        "clab-owner": "vaithee",
+        "clab-topo-file": "/home/vaithee/clab-topologies/day-002/networking/001-bgp-unicast/clab.yaml",
+        "containerlab": "bgp-unicast-rr"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "rr1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:de:0b:e2",
+          "peer": "z"
+        },
+        "z": {
+          "node": "pe1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:da:64:1e",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "rr1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:24:a9:01",
+          "peer": "z"
+        },
+        "z": {
+          "node": "pe2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:2f:86:39",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "pe1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:ad:e4:52",
+          "peer": "z"
+        },
+        "z": {
+          "node": "ce1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:5e:f4:3e",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "pe2",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:9c:53:54",
+          "peer": "z"
+        },
+        "z": {
+          "node": "ce2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:6e:73:ac",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}
