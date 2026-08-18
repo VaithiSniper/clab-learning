@@ -8,12 +8,12 @@ all:
     linux:
       hosts:
         clab-bgp-unicast-rr-ce1:
-          ansible_host: 172.20.20.5
-        clab-bgp-unicast-rr-ce2:
           ansible_host: 172.20.20.6
-        clab-bgp-unicast-rr-pe1:
-          ansible_host: 172.20.20.4
-        clab-bgp-unicast-rr-pe2:
+        clab-bgp-unicast-rr-ce2:
           ansible_host: 172.20.20.3
-        clab-bgp-unicast-rr-rr1:
+        clab-bgp-unicast-rr-pe1:
+          ansible_host: 172.20.20.5
+        clab-bgp-unicast-rr-pe2:
           ansible_host: 172.20.20.2
+        clab-bgp-unicast-rr-rr1:
+          ansible_host: 172.20.20.4
