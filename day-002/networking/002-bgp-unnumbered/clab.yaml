@@ -1,0 +1,49 @@
+name: bgp-unnumbered
+
+topology:
+  nodes:
+    spine1:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - configs/spine1/frr.conf:/etc/frr/frr.conf
+        - configs/spine1/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 10.255.0.1/32 dev lo
+        - ip link set lo up
+
+    spine2:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - configs/spine2/frr.conf:/etc/frr/frr.conf
+        - configs/spine2/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 10.255.0.2/32 dev lo
+        - ip link set lo up
+
+    leaf1:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - configs/leaf1/frr.conf:/etc/frr/frr.conf
+        - configs/leaf1/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 10.255.1.1/32 dev lo
+        - ip link set lo up
+
+    leaf2:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - configs/leaf2/frr.conf:/etc/frr/frr.conf
+        - configs/leaf2/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 10.255.1.2/32 dev lo
+        - ip link set lo up
+
+  links:
+    - endpoints: ["leaf1:eth1", "spine1:eth1"]
+    - endpoints: ["leaf1:eth2", "spine2:eth1"]
+    - endpoints: ["leaf2:eth1", "spine1:eth2"]
+    - endpoints: ["leaf2:eth2", "spine2:eth2"]
