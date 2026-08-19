@@ -1,0 +1,68 @@
+BGP table version is 10, local router ID is 10.255.0.254
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+EVPN type-1 prefix: [1]:[EthTag]:[ESI]:[IPlen]:[VTEP-IP]:[Frag-id]
+EVPN type-2 prefix: [2]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
+EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
+EVPN type-4 prefix: [4]:[ESI]:[IPlen]:[OrigIP]
+EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
+
+   Network          Next Hop            Metric LocPrf Weight Path
+                    Extended Community
+Route Distinguisher: 10.255.0.1:2
+ *>i [2]:[0]:[48]:[aa:c1:ab:d4:37:2c] RD 10.255.0.1:2
+                    10.255.0.1(leaf1)
+                                                    100      0 i
+                    RT:65000:100 ET:8
+ *>i [3]:[0]:[32]:[10.255.0.1] RD 10.255.0.1:2
+                    10.255.0.1(leaf1)
+                                                    100      0 i
+                    RT:65000:100 ET:8
+Route Distinguisher: 10.255.0.1:3
+ *>i [2]:[0]:[48]:[aa:c1:ab:85:6f:a5] RD 10.255.0.1:3
+                    10.255.0.1(leaf1)
+                                                    100      0 i
+                    RT:65000:101 ET:8
+ *>i [3]:[0]:[32]:[10.255.0.1] RD 10.255.0.1:3
+                    10.255.0.1(leaf1)
+                                                    100      0 i
+                    RT:65000:101 ET:8
+Route Distinguisher: 10.255.0.1:4
+ *>i [2]:[0]:[48]:[aa:c1:ab:93:55:51] RD 10.255.0.1:4
+                    10.255.0.1(leaf1)
+                                                    100      0 i
+                    RT:65000:102 ET:8
+ *>i [3]:[0]:[32]:[10.255.0.1] RD 10.255.0.1:4
+                    10.255.0.1(leaf1)
+                                                    100      0 i
+                    RT:65000:102 ET:8
+Route Distinguisher: 10.255.0.2:2
+ *>i [2]:[0]:[48]:[aa:c1:ab:73:66:ab] RD 10.255.0.2:2
+                    10.255.0.2(leaf2)
+                                                    100      0 i
+                    RT:65000:100 ET:8
+ *>i [3]:[0]:[32]:[10.255.0.2] RD 10.255.0.2:2
+                    10.255.0.2(leaf2)
+                                                    100      0 i
+                    RT:65000:100 ET:8
+Route Distinguisher: 10.255.0.2:3
+ *>i [2]:[0]:[48]:[aa:c1:ab:59:5c:8e] RD 10.255.0.2:3
+                    10.255.0.2(leaf2)
+                                                    100      0 i
+                    RT:65000:101 ET:8
+ *>i [3]:[0]:[32]:[10.255.0.2] RD 10.255.0.2:3
+                    10.255.0.2(leaf2)
+                                                    100      0 i
+                    RT:65000:101 ET:8
+Route Distinguisher: 10.255.0.2:4
+ *>i [2]:[0]:[48]:[aa:c1:ab:fd:2e:45] RD 10.255.0.2:4
+                    10.255.0.2(leaf2)
+                                                    100      0 i
+                    RT:65000:102 ET:8
+ *>i [3]:[0]:[32]:[10.255.0.2] RD 10.255.0.2:4
+                    10.255.0.2(leaf2)
+                                                    100      0 i
+                    RT:65000:102 ET:8
+
+Displayed 12 prefixes (12 paths)

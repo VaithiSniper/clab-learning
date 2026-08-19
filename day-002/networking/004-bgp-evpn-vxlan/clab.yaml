@@ -1,0 +1,133 @@
+name: bgp-evpn-vxlan-lab
+
+topology:
+  defaults:
+    kind: linux
+
+  nodes:
+    spine:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - configs/spine/frr.conf:/etc/frr/frr.conf
+        - configs/spine/daemons:/etc/frr/daemons
+      exec:
+        - ip link set lo up
+
+    leaf1:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - configs/leaf1/frr.conf:/etc/frr/frr.conf
+        - configs/leaf1/daemons:/etc/frr/daemons
+      exec:
+        - ip link set lo up
+        - ip link add br-red type bridge
+        - ip link add vxlan-red type vxlan id 100 local 10.255.0.1 dstport 4789 nolearning
+        - ip link set vxlan-red master br-red
+        - ip link set vxlan-red type bridge_slave learning off neigh_suppress on
+        - ip link set br-red up
+        - ip link set vxlan-red up
+        - ip link set eth2 master br-red
+        - ip link set eth2 up
+        - ip link add br-green type bridge
+        - ip link add vxlan-green type vxlan id 101 local 10.255.0.1 dstport 4789 nolearning
+        - ip link set vxlan-green master br-green
+        - ip link set vxlan-green type bridge_slave learning off neigh_suppress on
+        - ip link set br-green up
+        - ip link set vxlan-green up
+        - ip link set eth3 master br-green
+        - ip link set eth3 up
+        - ip link add br-blue type bridge
+        - ip link add vxlan-blue type vxlan id 102 local 10.255.0.1 dstport 4789 nolearning
+        - ip link set vxlan-blue master br-blue
+        - ip link set vxlan-blue type bridge_slave learning off neigh_suppress on
+        - ip link set br-blue up
+        - ip link set vxlan-blue up
+        - ip link set eth4 master br-blue
+        - ip link set eth4 up
+
+    leaf2:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      binds:
+        - configs/leaf2/frr.conf:/etc/frr/frr.conf
+        - configs/leaf2/daemons:/etc/frr/daemons
+      exec:
+        - ip link set lo up
+        - ip link add br-red type bridge
+        - ip link add vxlan-red type vxlan id 100 local 10.255.0.2 dstport 4789 nolearning
+        - ip link set vxlan-red master br-red
+        - ip link set vxlan-red type bridge_slave learning off neigh_suppress on
+        - ip link set br-red up
+        - ip link set vxlan-red up
+        - ip link set eth2 master br-red
+        - ip link set eth2 up
+        - ip link add br-green type bridge
+        - ip link add vxlan-green type vxlan id 101 local 10.255.0.2 dstport 4789 nolearning
+        - ip link set vxlan-green master br-green
+        - ip link set vxlan-green type bridge_slave learning off neigh_suppress on
+        - ip link set br-green up
+        - ip link set vxlan-green up
+        - ip link set eth3 master br-green
+        - ip link set eth3 up
+        - ip link add br-blue type bridge
+        - ip link add vxlan-blue type vxlan id 102 local 10.255.0.2 dstport 4789 nolearning
+        - ip link set vxlan-blue master br-blue
+        - ip link set vxlan-blue type bridge_slave learning off neigh_suppress on
+        - ip link set br-blue up
+        - ip link set vxlan-blue up
+        - ip link set eth4 master br-blue
+        - ip link set eth4 up
+
+    client-red:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.100.0.11/24 dev eth1
+        - ip link set eth1 up
+
+    client-green:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.101.0.11/24 dev eth1
+        - ip link set eth1 up
+
+    client-blue:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.102.0.11/24 dev eth1
+        - ip link set eth1 up
+
+    server-red:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.100.0.12/24 dev eth1
+        - ip link set eth1 up
+
+    server-green:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.101.0.12/24 dev eth1
+        - ip link set eth1 up
+
+    server-blue:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.102.0.12/24 dev eth1
+        - ip link set eth1 up
+
+  links:
+    - endpoints: ["leaf1:eth1", "spine:eth1"]
+    - endpoints: ["leaf2:eth1", "spine:eth2"]
+    - endpoints: ["leaf1:eth2", "client-red:eth1"]
+    - endpoints: ["leaf1:eth3", "client-green:eth1"]
+    - endpoints: ["leaf1:eth4", "client-blue:eth1"]
+    - endpoints: ["leaf2:eth2", "server-red:eth1"]
+    - endpoints: ["leaf2:eth3", "server-green:eth1"]
+    - endpoints: ["leaf2:eth4", "server-blue:eth1"]
