@@ -1,0 +1,144 @@
+name: bgp-lu-vpn-rr
+
+topology:
+  nodes:
+    pe1:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      privileged: true
+      sysctls:
+        net.ipv4.ip_forward: "1"
+        net.ipv4.conf.all.rp_filter: "0"
+        net.ipv4.conf.default.rp_filter: "0"
+        net.mpls.platform_labels: "100000"
+      binds:
+        - configs/pe1/daemons:/etc/frr/daemons
+        - configs/pe1/frr.conf:/etc/frr/frr.conf
+        - configs/pe1/vtysh.conf:/etc/frr/vtysh.conf
+      exec:
+        - modprobe mpls_router || true
+        - modprobe mpls_iptunnel || true
+        - ip link add red type vrf table 100
+        - ip link add green type vrf table 101
+        - ip link add blue type vrf table 102
+        - ip link set red up
+        - ip link set green up
+        - ip link set blue up
+        - ip link set eth3 master red
+        - ip link set eth4 master green
+        - ip link set eth5 master blue
+        - sysctl -w net.mpls.conf.eth1.input=1 || true
+    rr1:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      privileged: true
+      sysctls:
+        net.ipv4.ip_forward: "1"
+        net.ipv4.conf.all.rp_filter: "0"
+        net.ipv4.conf.default.rp_filter: "0"
+        net.mpls.platform_labels: "100000"
+      binds:
+        - configs/rr1/daemons:/etc/frr/daemons
+        - configs/rr1/frr.conf:/etc/frr/frr.conf
+        - configs/rr1/vtysh.conf:/etc/frr/vtysh.conf
+      exec:
+        - modprobe mpls_router || true
+        - modprobe mpls_iptunnel || true
+        - sysctl -w net.mpls.conf.eth1.input=1 || true
+        - sysctl -w net.mpls.conf.eth2.input=1 || true
+    rr2:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      privileged: true
+      sysctls:
+        net.ipv4.ip_forward: "1"
+        net.ipv4.conf.all.rp_filter: "0"
+        net.ipv4.conf.default.rp_filter: "0"
+        net.mpls.platform_labels: "100000"
+      binds:
+        - configs/rr2/daemons:/etc/frr/daemons
+        - configs/rr2/frr.conf:/etc/frr/frr.conf
+        - configs/rr2/vtysh.conf:/etc/frr/vtysh.conf
+      exec:
+        - modprobe mpls_router || true
+        - modprobe mpls_iptunnel || true
+        - sysctl -w net.mpls.conf.eth1.input=1 || true
+        - sysctl -w net.mpls.conf.eth2.input=1 || true
+    pe2:
+      kind: linux
+      image: quay.io/frrouting/frr:10.7.0
+      privileged: true
+      sysctls:
+        net.ipv4.ip_forward: "1"
+        net.ipv4.conf.all.rp_filter: "0"
+        net.ipv4.conf.default.rp_filter: "0"
+        net.mpls.platform_labels: "100000"
+      binds:
+        - configs/pe2/daemons:/etc/frr/daemons
+        - configs/pe2/frr.conf:/etc/frr/frr.conf
+        - configs/pe2/vtysh.conf:/etc/frr/vtysh.conf
+      exec:
+        - modprobe mpls_router || true
+        - modprobe mpls_iptunnel || true
+        - ip link add red type vrf table 100
+        - ip link add green type vrf table 101
+        - ip link add blue type vrf table 102
+        - ip link set red up
+        - ip link set green up
+        - ip link set blue up
+        - ip link set eth3 master red
+        - ip link set eth4 master green
+        - ip link set eth5 master blue
+        - sysctl -w net.mpls.conf.eth2.input=1 || true
+    client-red:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.1.0.2/24 dev eth1
+        - ip link set eth1 up
+        - ip route replace default via 10.1.0.1
+    client-green:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.2.0.2/24 dev eth1
+        - ip link set eth1 up
+        - ip route replace default via 10.2.0.1
+    client-blue:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.3.0.2/24 dev eth1
+        - ip link set eth1 up
+        - ip route replace default via 10.3.0.1
+    server-red:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.1.1.2/24 dev eth1
+        - ip link set eth1 up
+        - ip route replace default via 10.1.1.1
+    server-green:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.2.1.2/24 dev eth1
+        - ip link set eth1 up
+        - ip route replace default via 10.2.1.1
+    server-blue:
+      kind: linux
+      image: alpine:3.20
+      exec:
+        - ip addr add 10.3.1.2/24 dev eth1
+        - ip link set eth1 up
+        - ip route replace default via 10.3.1.1
+  links:
+    - endpoints: ["pe1:eth1", "rr1:eth1"]
+    - endpoints: ["rr1:eth2", "rr2:eth1"]
+    - endpoints: ["rr2:eth2", "pe2:eth2"]
+    - endpoints: ["pe1:eth3", "client-red:eth1"]
+    - endpoints: ["pe1:eth4", "client-green:eth1"]
+    - endpoints: ["pe1:eth5", "client-blue:eth1"]
+    - endpoints: ["pe2:eth3", "server-red:eth1"]
+    - endpoints: ["pe2:eth4", "server-green:eth1"]
+    - endpoints: ["pe2:eth5", "server-blue:eth1"]
